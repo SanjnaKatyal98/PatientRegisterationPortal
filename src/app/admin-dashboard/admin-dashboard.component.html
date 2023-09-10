@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>Admin Panel</title>
+    </head>
+    <body>
+        <h1>Welcome Admin!</h1>
+        <img src="..\assets\images\bg.png"><br><br>
+        <div class="container">
+            <!--for searching caregiver by name and regdate-->
+            <input type="text" class="filterAll" id="filterAll" name="filterAll" placeholder="enter to search" [(ngModel)]="searchText"><br>
+            <!--if table is empty it'll show content in else block-->
+            <table class="table table-striped" *ngIf="cglist.length;else elseBlock">
+                <thead>
+                    <tr>
+                        <th scope="col">Sno</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Registeration Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let f of cglist | filter:searchText;let i=index"> <!--searching via pipe;also demonstration of pipe-->
+                    <!-- <tr *ngFor="let f of filteredList;let i=index"> -->
+                        <td>{{i+1}}</td>
+                        <td>{{f.fullname}}</td>
+                        <td>{{f.regDate}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <!--else block-->
+            <ng-template #elseBlock><h4>no data available</h4></ng-template>
+        </div>
+        <!--buttons-->
+        <button type="button" class="btn btn-info" (click)="delete()">Edit User</button>
+        <button type="button" class="btn btn-danger" (click)="logout()">Logout</button>
+        <button class="btn btn-light" type="submit" (click)="back()">Back</button>
+    </body>
+</html>

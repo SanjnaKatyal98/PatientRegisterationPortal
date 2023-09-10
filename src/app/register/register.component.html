@@ -1,0 +1,123 @@
+<html>
+    <head>
+        <title>Registeration Form</title>
+    </head>
+    <body>
+        <h1>Registeration Form</h1><!--heading-->
+        <div class="container">
+            <!--registeration form is template form-->
+            <form #regForm="ngForm" (ngSubmit)="onSubmit(regForm)">
+                <!--data input for fullname-->
+                <label for="fullname"> Enter Full Name: </label>
+                <input type="text" name="fullname" #fullname="ngModel" required ngModel id="fullname" minlength="5" 
+                    [(ngModel)]="user.fullname" placeholder="enter full name"><br>
+                <!--for error-->
+                <div *ngIf="!fullname?.valid && (fullname?.dirty || fullname?.touched)" class="error">
+                    <div *ngIf="fullname.errors?.['required']">
+                        Name is required
+                    </div>
+                    <div *ngIf="fullname.errors?.['minlength']">
+                        Name minimum number of chars required is 5
+                    </div>
+                </div><br>
+                <!--data input for age-->
+                <label for="age"> Enter Age: </label>
+                <input type="number" name="age" #age="ngModel" ngModel required id="age" [(ngModel)]="user.age" 
+                    placeholder="enter age"><br>
+                <!--for error-->
+                <div *ngIf="!age?.valid && (age?.dirty || age?.touched)" class="error">
+                    <div *ngIf="age.errors?.['required']">
+                        Age is required
+                    </div>
+                </div><br>
+                <!--data input for user name-->
+                <label for="id"> Enter Email/Username: </label>
+                    <input type="email" name="usrnm" id="id" #id="ngModel" ngModel required minlength="5" 
+                        [(ngModel)]="user.username" placeholder="enter username/email"><br>
+                <!--for error-->
+                <div *ngIf="!id?.valid && (id?.dirty || id?.touched)" class="error">
+                    <div *ngIf="id.errors?.['required']">
+                        Username is required
+                    </div>
+                    <div *ngIf="id.errors?.['minlength']">
+                        Username minimum number of chars required is 5
+                    </div>
+                </div><br>
+                <!--data input for password-->
+                <label for="pass"> Enter Password: </label>
+                    <input type="password" name="pass" id="pass" #pass="ngModel" ngModel required minlength="5" 
+                        [(ngModel)]="user.password" placeholder="enter password"><br>
+                <!--for error-->
+                <div *ngIf="!pass?.valid && (pass?.dirty || pass?.touched)" class="error">
+                    <div *ngIf="pass.errors?.['required']">
+                        Password is required
+                    </div>
+                    <div *ngIf="pass.errors?.['minlength']">
+                        Password minimum number of chars required is 5
+                    </div>
+                </div><br>
+                <!--data input for date of birth-->
+                DoB: <input type="date" name="dob" id="dob" #dob="ngModel" required ngModel [(ngModel)]="user.dob"><br>
+                <!--for error-->
+                <div *ngIf="!dob?.valid && (dob?.dirty || dob?.touched)" class="error">
+                    <div *ngIf="dob.errors?.['required']">
+                        Date of Birth is required
+                    </div>
+                </div><br>
+                <!--data input for gender-->
+                Gender: <input type="radio" id="male" name="sex" value="M" required [(ngModel)]="user.gender">Male
+                        <input type="radio" id="female" name="sex" value="F" required [(ngModel)]="user.gender">Female
+                        <br><br>
+                <!--data input for drop down list-->
+                Medical Device: <select name="medDev" id="medDev" #medDev="ngModel" ngModel required [(ngModel)]="user.medDev">
+                                    <option value="Select..">Select..</option>
+                                    <option value="Stent">Stent</option>
+                                    <option value="Pacemaker">Pacemaker</option>
+                                    <option value="BioButton">BioButton</option>
+                                    <option value="Multiparameter wearable device">Multiparameter wearable device</option>
+                                </select><br>
+                <!--for error-->
+                <div *ngIf="!medDev?.valid && (medDev?.dirty || medDev?.touched)" class="error">
+                    <div *ngIf="medDev.errors?.['required']">
+                        Medical Device detail is required
+                    </div>
+                </div><br>
+                Plan opted: <select name="plan" id="plan" #plan="ngModel" ngModel required [(ngModel)]="user.plan">
+                                <option value="Select..">Select..</option>
+                                <option value="Silver">Silver</option>
+                                <option value="Gold">Gold</option>
+                                <option value="Platinum">Platinum</option>
+                            </select><br>
+                <!--for error-->
+                <div *ngIf="!plan?.valid && (plan?.dirty || plan?.touched)" class="error">
+                    <div *ngIf="plan.errors?.['required']">
+                        Plan Opted is required
+                    </div>
+                </div><br>
+                <!--data input for date of registeration-->
+                Registeration Date (Today's Date): <input type="date" name="regDate" id="regDate" #regDate="ngModel" 
+                    ngModel required [(ngModel)]="user.regDate"><br>
+                <!--for error-->
+                <div *ngIf="!regDate?.valid && (regDate?.dirty || regDate?.touched)" class="error">
+                    <div *ngIf="regDate.errors?.['required']">
+                        Date of registeration is required
+                    </div>
+                </div><br>
+                <!--data input for plan expiry-->
+                Plan Expiry Date: <input type="date" name="expDate" id="expDate" #expDate="ngModel" 
+                    ngModel required [(ngModel)]="user.expDate"><br>
+                <!--for error-->
+                <div *ngIf="!expDate?.valid && (expDate?.dirty || expDate?.touched)" class="error">
+                    <div *ngIf="expDate.errors?.['required']">
+                        Date of plan expiration is required
+                    </div>
+                </div><br>
+                <!--buttons-->
+                <button type="button" class="btn btn-success" [disabled]="!regForm.valid" 
+                    (click)="onSubmit(regForm)" style="width: 25%;">Submit</button><br>
+                <button type="button" class="btn btn-primary" (click)="reset(regForm)">Clear</button>
+                <button class="btn btn-dark" type="submit" (click)="back()">Back</button>
+            </form>
+        </div>
+    </body>
+</html>

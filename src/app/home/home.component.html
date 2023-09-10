@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title>Home Page</title>
+    </head>
+    <body>
+        <h1>Welcome!</h1>
+        <!--carousel-->
+        <ngb-carousel *ngIf="showCarousel" #carousel [interval]="2500">
+            <ng-template ngbSlide>
+              <div>
+                <img src="..\assets\images\p1.jpg" alt="slide1">
+                <div class="carousel-caption d-none d-md-block" style="color: black;">
+                    <h5>We help you like family!</h5>
+                    <p>Come join us!</p>
+                </div>
+              </div>
+            </ng-template>
+            <ng-template ngbSlide>
+              <div>
+                <img src="..\assets\images\p2.jpg" alt="slide2">
+                <div class="carousel-caption d-none d-md-block" style="color: black;">
+                    <h5>Doctor Patient Confidentiality Maintained!</h5>
+                    <p>You come first for us.</p>
+                </div>
+              </div>
+            </ng-template>
+          </ngb-carousel>
+    </body>
+</html>

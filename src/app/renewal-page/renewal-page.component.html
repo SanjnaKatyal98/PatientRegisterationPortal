@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <title>Plan Renewal</title>
+    </head>
+    <body>
+        <h1>Enter Details</h1><!--heading-->
+        <div class="container">
+            <!--template form-->
+            <form #planForm="ngForm" (ngSubmit)="onSubmit(planForm)" style="margin: 15px;">
+                <!--data input for drop down-->
+                Plan opted: <select name="plan" id="plan" #plan="ngModel" ngModel required>
+                    <option value="Select..">Select..</option>
+                    <option value="Silver">Silver</option>
+                    <option value="Gold">Gold</option>
+                    <option value="Platinum">Platinum</option>
+                </select><br>
+                <!--for error-->
+                <div *ngIf="!plan?.valid && (plan?.dirty || plan?.touched)" class="error">
+                    <div *ngIf="plan.errors?.['required']">
+                        Plan Opted is required
+                    </div>
+                </div><br>
+                <!--data input-->
+                <label for="uid"> Enter Username: </label>
+                <input type="text" name="usrnm" id="usrnm" #usrnm="ngModel" ngModel required placeholder="enter username"><br>
+                <!--for error-->
+                <div *ngIf="!usrnm?.valid && (usrnm?.dirty || usrnm?.touched)" class="error">
+                    <div *ngIf="usrnm.errors?.['required']">
+                        Username is required
+                    </div>
+                </div><br>
+                <!--data input for date of registeration-->
+                Renewal Date (Today's Date): <input type="date" name="regDate" id="regDate" #regDate="ngModel" 
+                    ngModel required><br>
+                <!--for error-->
+                <div *ngIf="!regDate?.valid && (regDate?.dirty || regDate?.touched)" class="error">
+                    <div *ngIf="regDate.errors?.['required']">
+                        Date of registeration is required
+                    </div>
+                </div><br>
+                <!--data input for plan expiry-->
+                Plan Expiry Date for Current plan: <input type="date" name="expDate" id="expDate" #expDate="ngModel" 
+                    ngModel required><br>
+                <!--for error-->
+                <div *ngIf="!expDate?.valid && (expDate?.dirty || expDate?.touched)" class="error">
+                    <div *ngIf="expDate.errors?.['required']">
+                        Date of plan expiration is required
+                    </div>
+                </div><br>
+                <!--buttons-->
+                <button type="button" class="btn btn-success" [disabled]="!planForm.valid" style="width: 20%;" 
+                    (click)="onSubmit(planForm)">Submit</button>
+                <button type="button" class="btn btn-primary" (click)="reset(planForm)" style="width: 20%;">Clear</button>
+                <button class="btn btn-dark" type="submit" (click)="back()" style="width: 20%;">Back</button>
+            </form>
+        </div>
+    </body>
+</html>
